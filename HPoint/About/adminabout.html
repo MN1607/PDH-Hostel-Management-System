@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostels Information - Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c3e50, #3498db, #e74c3c);
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        /* Header Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px auto 0;
+            max-width: 1200px;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        header .profile-card {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #3498db;
+        }
+
+        header .admin-info {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        header .go-back-btn {
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header .go-back-btn:hover {
+            background: linear-gradient(90deg, #2980b9, #1f618d);
+            transform: translateY(-2px);
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Status Dashboard */
+        .status-dashboard {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .status-card {
+            text-align: center;
+        }
+
+        .status-card h3 {
+            color: #2c3e50;
+            font-size: 18px;
+            margin: 0 0 10px;
+        }
+
+        .status-card p {
+            font-size: 24px;
+            color: #3498db;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Search Bar Styling */
+        .search-container {
+            text-align: right;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .search-bar {
+            padding: 12px 50px 12px 20px;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 15px;
+            background: #f8f9fa;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-bar:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 25px;
+            transform: translateY(-50%);
+            color: #3498db;
+            font-size: 16px;
+        }
+
+        /* Add Button Styling */
+        .add-btn-container {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .add-btn {
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: bounce 1.5s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .add-btn:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: fadeInTable 1s ease forwards;
+        }
+
+        @keyframes fadeInTable {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        th {
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        th:hover {
+            background: linear-gradient(90deg, #1f2a44, #2980b9);
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        td.actions {
+            text-align: center;
+        }
+
+        td.actions button {
+            padding: 8px 12px;
+            margin: 2px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            background: none;
+        }
+
+        td.actions button.edit {
+            color: #28a745;
+        }
+
+        td.actions button.delete {
+            color: #dc3545;
+        }
+
+        td.actions button.edit:hover {
+            color: #218838;
+            transform: scale(1.1);
+        }
+
+        td.actions button.delete:hover {
+            color: #c82333;
+            transform: scale(1.1);
+        }
+
+        /* Add Personnel Form Styling */
+        .add-personnel-form {
+            display: none;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        .add-personnel-form h2 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+            outline: none;
+        }
+
+        .form-group button {
+            width: 100%;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Export Button Styling */
+        #exportBtn {
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+            display: none;
+        }
+
+        #exportBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Footer Styling */
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            color: #2c3e50;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Toast Notification Styling */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 1000;
+            animation: slideInToast 0.5s ease forwards;
+        }
+
+        @keyframes slideInToast {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .toast.success {
+            background: #28a745;
+        }
+
+        .toast.error {
+            background: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="profile-card">
+        <div class="logo">
+            <img src="admin.jpg" alt="Admin Profile">
+        </div>
+        <div class="admin-info">Welcome, Admin</div>
+    </div>
+    <button class="go-back-btn" id="goBackBtn">Go Back</button>
+</header>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast"></div>
+
+<div class="container">
+    <h2>About the Hostels</h2>
+    <p>
+        The college has five hostels: 
+        <strong><em>Ennagam</em></strong>, 
+        <strong><em>Joachim Villa</em></strong>, 
+        <strong><em>Papa Duhayon Hostel</em></strong> (for boys), 
+        <strong><em>Arockia Annai Hostel</em></strong> (for girls), and 
+        <strong><em>Mamma Margret</em></strong> (for PG girls).
+    </p>
+    <p>
+        The hostels accommodate nearly 500 students and offer various facilities for study, recreation, and common living. 
+        Savio Mess serves subsidized meals for hostel inmates and guests. 
+        Day Scholars who are unable to bring their lunch are provided with a subsidized Mid-Day meal at Savio Mess.
+    </p>
+
+    <h2>Key Personnel</h2>
+
+    <!-- Status Dashboard -->
+    <div class="status-dashboard">
+        <div class="status-card">
+            <h3>Total Personnel</h3>
+            <p id="totalPersonnel">0</p>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" class="search-bar" id="searchBar" placeholder="Search personnel..." onkeyup="searchTable()">
+        <span class="search-icon"><i class="fas fa-search"></i></span>
+    </div>
+
+    <!-- Add Personnel Button -->
+    <div class="add-btn-container">
+        <button class="add-btn" onclick="toggleAddForm()">+ Add New Personnel</button>
+    </div>
+
+    <!-- Add Personnel Form -->
+    <div class="add-personnel-form" id="addPersonnelForm">
+        <h2>Add New Personnel</h2>
+        <form id="addForm" onsubmit="return addPersonnel(event)">
+            <div class="form-group">
+                <input type="text" id="newRole" placeholder="Role" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="newName" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Add Personnel</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Personnel Table -->
+    <table>
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Role <i class="fas fa-sort"></i></th>
+                <th onclick="sortTable(1)">Name <i class="fas fa-sort"></i></th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="personnelTable">
+            <!-- Rows will be dynamically added here -->
+        </tbody>
+    </table>
+
+    <!-- Export Button -->
+    <button id="exportBtn" onclick="exportTable()">Export to CSV</button>
+</div>
+
+<footer>
+    <p>© 2025 Nishanth Clinton A - 3CS | Contact: admin@hostelmanagement.com</p>
+</footer>
+
+<script>
+    // Load data from local storage
+    let personnelData = JSON.parse(localStorage.getItem('personnelData')) || [
+        { role: "Convener (Rector & Secretary)", name: "Dr. Bosco Augustine SDB" },
+        { role: "Vice Rector & Principal", name: "Dr. Thaddeus S SDB" },
+        { role: "Administrator", name: "Fr. Xavier Raj SDB" },
+        { role: "Director: Papa Duhayon Hostel", name: "Fr. Charles Grace M SDB" },
+        { role: "Director: Arockia Annai Hostel", name: "Sr. Rosaline FMC" },
+        { role: "Director: DB-Extension Centre", name: "Fr. Henrick John Antony J SDB" },
+        { role: "Director: Ennagam / Joachim Villa", name: "Fr. Charles Grace M SDB" }
+    ];
+
+    let sortDirection = 1;
+    let lastSortedColumn = -1;
+
+    // Show Toast Notification
+    function showToast(message, type) {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.className = "toast " + type;
+        toast.style.display = "block";
+        setTimeout(() => {
+            toast.style.display = "none";
+        }, 3000);
+    }
+
+    // Update Total Personnel Count
+    function updateTotalPersonnel() {
+        document.getElementById("totalPersonnel").textContent = personnelData.length;
+    }
+
+    // Render table rows
+    function renderTable() {
+        const tableBody = document.getElementById('personnelTable');
+        tableBody.innerHTML = personnelData.map((person, index) => `
+            <tr>
+                <td>${person.role}</td>
+                <td>${person.name}</td>
+                <td class="actions">
+                    <button class="edit" onclick="editRow(${index})" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="delete" onclick="deleteRow(${index})" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+        updateTotalPersonnel();
+    }
+
+    // Toggle Add Personnel Form
+    function toggleAddForm() {
+        var form = document.getElementById("addPersonnelForm");
+        form.style.display = (form.style.display === "none" || form.style.display === "") ? "block" : "none";
+    }
+
+    // Add new personnel
+    function addPersonnel(event) {
+        event.preventDefault();
+        const newRole = document.getElementById("newRole").value.trim();
+        const newName = document.getElementById("newName").value.trim();
+
+        if (!newRole || !newName) {
+            showToast("Both Role and Name are required!", "error");
+            return false;
+        }
+
+        personnelData.push({ role: newRole, name: newName });
+        localStorage.setItem('personnelData', JSON.stringify(personnelData));
+        renderTable();
+        document.getElementById("addForm").reset();
+        toggleAddForm();
+        showToast("Personnel added successfully!", "success");
+        return false;
+    }
+
+    // Edit row
+    function editRow(index) {
+        const newRole = prompt("Edit Role:", personnelData[index].role);
+        const newName = prompt("Edit Name:", personnelData[index].name);
+        if (newRole !== null && newName !== null && newRole.trim() && newName.trim()) {
+            personnelData[index] = { role: newRole.trim(), name: newName.trim() };
+            localStorage.setItem('personnelData', JSON.stringify(personnelData));
+            renderTable();
+            showToast("Personnel updated successfully!", "success");
+        }
+    }
+
+    // Delete row
+    function deleteRow(index) {
+        if (confirm("Are you sure you want to delete this entry?")) {
+            personnelData.splice(index, 1);
+            localStorage.setItem('personnelData', JSON.stringify(personnelData));
+            renderTable();
+            showToast("Personnel deleted successfully!", "success");
+        }
+    }
+
+    // Search Table Functionality
+    function searchTable() {
+        var input = document.getElementById("searchBar").value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        var table = document.querySelector("table tbody");
+        var rows = table.getElementsByTagName("tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName("td");
+            var match = false;
+            for (var j = 0; j < cells.length - 1; j++) {
+                var cellText = cells[j].textContent.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+                if (cellText.indexOf(input) > -1) {
+                    match = true;
+                    break;
+                }
+            }
+            rows[i].style.display = match ? "" : "none";
+        }
+        document.getElementById("exportBtn").style.display = input ? "block" : "none";
+    }
+
+    // Sort Table Functionality
+    function sortTable(columnIndex) {
+        if (lastSortedColumn === columnIndex) {
+            sortDirection *= -1;
+        } else {
+            sortDirection = 1;
+        }
+        lastSortedColumn = columnIndex;
+
+        personnelData.sort((a, b) => {
+            let valueA = columnIndex === 0 ? a.role : a.name;
+            let valueB = columnIndex === 0 ? b.role : b.name;
+            return valueA.localeCompare(valueB) * sortDirection;
+        });
+
+        renderTable();
+    }
+
+    // Export Table to CSV
+    function exportTable() {
+        if (confirm("Are you sure you want to export personnel data to CSV?")) {
+            var csv = [];
+            var rows = document.querySelectorAll("table tr");
+
+            for (var i = 0; i < rows.length; i++) {
+                var row = [], cols = rows[i].querySelectorAll("td, th");
+                for (var j = 0; j < cols.length - 1; j++) {
+                    row.push(cols[j].textContent.replace(/(\r\n|\n|\r)/gm, ""));
+                }
+                csv.push(row.join(","));
+            }
+
+            var csvFile = new Blob([csv.join("\n")], { type: "text/csv" });
+            var downloadLink = document.createElement("a");
+            downloadLink.download = "personnel_data_" + new Date().toISOString().slice(0, 10) + ".csv";
+            downloadLink.href = window.URL.createObjectURL(csvFile);
+            downloadLink.style.display = "none";
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            showToast("Data exported successfully!", "success");
+        }
+    }
+
+    // Go Back Functionality
+    document.getElementById("goBackBtn").addEventListener("click", function () {
+        window.location.href = "http://localhost/Hpoint/Admindashboard/admindashboard.html";
+    });
+
+    // Initial render
+    renderTable();
+</script>
+
+</body>
+</html>

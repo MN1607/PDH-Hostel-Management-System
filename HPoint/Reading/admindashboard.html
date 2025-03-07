@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Management - Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Background Animation */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #a18cd1);
+            background-size: 400% 400%;
+            animation: Gradient 15s ease infinite;
+            overflow-x: hidden;
+        }
+        @keyframes Gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header and Footer */
+        header, footer {
+            background: rgba(44, 62, 80, 0.8);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            height: 50px;
+        }
+        .logout {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .logout:hover {
+            background: #c0392b;
+        }
+
+        /* Main Content */
+        h1 {
+            color: #2c3e50;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            margin: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(44, 62, 80, 0.8);
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function logout() {
+            window.location.href = 'index2.html';
+        }
+        
+        function redirectToModule(module) {
+            let pageMap = {
+                "About": "about.html",
+                "Contact": "admin_contact.php",
+                "Fee": "fee.html",
+                "Attendance": "attendance.html",
+                "Gate Pass": "gate-pass.html",
+                "Maintenance": "Maintenance/admin_maintenance.php",
+                "Sports": "Sports/AdminSports.php",
+                "Reading": "Reading/admin_reading.php",
+                "Staff Details": "staff-details.html"
+            };
+            
+            let page = pageMap[module] || module.toLowerCase().replace(/ /g, '-') + '.html';
+            window.location.href = page;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="don-bosco-logo.png" alt="Don Bosco College Yelagiri" class="logo">
+        <h2>Hostel Management System</h2>
+        <button class="logout" onclick="logout()">LogOut</button>
+    </header>
+    
+    <main>
+        <h1>Welcome Admin!</h1>
+        <div class="dashboard">
+            <!-- About Module -->
+            <div class="card" onclick="redirectToModule('About')">
+                <img src="https://source.unsplash.com/300x200/?about,information" alt="About">
+                <h3>About</h3>
+            </div>
+
+            <!-- Contact Module -->
+            <div class="card" onclick="redirectToModule('Contact')">
+                <img src="https://source.unsplash.com/300x200/?contact,phone" alt="Contact">
+                <h3>Contact</h3>
+            </div>
+
+            <!-- Fee Module -->
+            <div class="card" onclick="redirectToModule('Fee')">
+                <img src="https://source.unsplash.com/300x200/?fee,money" alt="Fee">
+                <h3>Fee</h3>
+            </div>
+
+            <!-- Attendance Module -->
+            <div class="card" onclick="redirectToModule('Attendance')">
+                <img src="https://source.unsplash.com/300x200/?attendance,students" alt="Attendance">
+                <h3>Attendance</h3>
+            </div>
+
+            <!-- Gate Pass Module -->
+            <div class="card" onclick="redirectToModule('Gate Pass')">
+                <img src="https://source.unsplash.com/300x200/?gate,pass" alt="Gate Pass">
+                <h3>Gate Pass</h3>
+            </div>
+
+            <!-- Maintenance Module -->
+            <div class="card" onclick="redirectToModule('Maintenance')">
+                <img src="https://source.unsplash.com/300x200/?maintenance,repair" alt="Maintenance">
+                <h3>Maintenance</h3>
+            </div>
+
+            <!-- Sports Module -->
+            <div class="card" onclick="redirectToModule('Sports')">
+                <img src="https://source.unsplash.com/300x200/?sports,football" alt="Sports">
+                <h3>Sports</h3>
+            </div>
+
+            <!-- Reading Module -->
+            <div class="card" onclick="redirectToModule('Reading')">
+                <img src="https://source.unsplash.com/300x200/?reading,books" alt="Reading">
+                <h3>Reading</h3>
+            </div>
+
+            <!-- Staff Details Module -->
+            <div class="card" onclick="redirectToModule('Staff Details')">
+                <img src="https://source.unsplash.com/300x200/?staff,team" alt="Staff Details">
+                <h3>Staff Details</h3>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 Hostel Management System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

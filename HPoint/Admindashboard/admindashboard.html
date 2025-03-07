@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Hostel Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="adminstyle.css">
+    <style>
+        /* Inline CSS to stop admin image rotation */
+        .profile-card .logo img {
+            animation: none !important; /* Override any existing rotation animation */
+            transform: none !important; /* Reset any transform */
+            transition: none !important; /* Remove any transition effects */
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="profile-card">
+            <div class="logo">
+                <img src="admin.jpg" alt="Admin Profile">
+            </div>
+            <div class="admin-info">Welcome, NISHI</div>
+        </div>
+        <a href="" class="active"><i class="fas fa-home"></i>Dashboard</a>
+        <a href="/HPoint/About/adminabout.html"><i class="fas fa-info-circle"></i>About</a>
+        <a href="/HPoint/Attendance/admin_attendance.php"><i class="fas fa-calendar-check"></i>Attendance</a>
+        <a href="/HPoint/Gatepass/admin_messages.php"><i class="fas fa-door-open"></i>Gate Pass</a>
+        <a href="/HPoint/Maintenance/admin_maintenance.php"><i class="fas fa-tools"></i>Maintenance</a>
+        <a href="/HPoint/Sports/AdminSports.php"><i class="fas fa-football-ball"></i>Sports & Activities</a>
+        <a href="/HPoint/Reading/admin_reading.php"><i class="fas fa-book"></i>Reading & Library</a>
+        <a href="/HPoint/Admindashboard/staffdetails.php"><i class="fas fa-users"></i>Staff Details</a>
+        <a href="/HPoint/Mess/adminmess.php"><i class="fas fa-utensils"></i>Mess Fees</a>
+        <a href="/HPoint/Fee/adminfees.php"><i class="fas fa-building"></i>Hostel Fees</a>
+        <a href="/HPoint/Admindashboard/Students_details.php"><i class="fas fa-user-graduate"></i>Students Details</a>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <header>
+            <select id="searchCategory">
+                <option value="all">All</option>
+                <option value="students">Students</option>
+                <option value="staff">Staff</option>
+                <option value="fees">Fees</option>
+                <option value="maintenance">Maintenance</option>
+                <option value="sports">Sports</option>
+                <option value="mess-fees">Mess Fees</option>
+                <option value="hostel-fees">Hostel Fees</option>
+                <option value="students-details">Students Details</option>
+            </select>
+
+            <div class="search-container">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+                <input type="text" class="search-bar" id="search" placeholder="Search across modules...">
+            </div>
+        </header>
+
+        <div id="searchResults" class="search-results"></div>
+
+        <!-- Key Features Section -->
+        <div class="key-features">
+            <h3>Key Features</h3>
+            <ul>
+                <li><i class="fas fa-users"></i>Manage up to 250 students efficiently</li>
+                <li><i class="fas fa-bell"></i>Real-time notifications for pending requests</li>
+                <li><i class="fas fa-search"></i>Advanced search across all modules</li>
+                <li><i class="fas fa-file-export"></i>Export data for reporting</li>
+                <li><i class="fas fa-shield-alt"></i>Secure admin access with logout functionality</li>
+            </ul>
+        </div>
+
+        <!-- Hostel Information Section -->
+        <div class="hostel-information">
+            <h3>Hostel Information</h3>
+            <p><strong>Name:</strong> PDH Hostel</p>
+            <p><strong>Location:</strong> Don Bosco College (Co-Ed), Yelagiri Hills</p>
+            <p><strong>Total Rooms:</strong> 5</p>
+            <p><strong>Capacity:</strong> 250 Students</p>
+            <p><strong>Contact:</strong> +123-456-7890</p>
+            <p><strong>Services:</strong> 24/7 Security, Mess, Library, Sports Facilities</p>
+            <div class="hostel-images">
+                <img src="college.jpg" alt="Hostel Exterior">
+                <img src="hostelbed.jpg" alt="Hostel Room">
+                <img src="pdh.jpg" alt="Hostel Mess">
+            </div>
+        </div>
+
+        <!-- College Information Section -->
+        <div class="college-info">
+            <h3>About Don Bosco College (Co-Ed), Yelagiri Hills, Guezuo Nagar</h3>
+            <p><strong>Overview:</strong> Don Bosco College (Co-Ed) is a premier educational institution located in the serene Yelagiri Hills, Guezuo Nagar. Established with a vision to provide quality education, the college offers a wide range of undergraduate and postgraduate programs.</p>
+            <p><strong>Location:</strong> Nestled in the picturesque Yelagiri Hills, the college provides a peaceful environment conducive to learning, surrounded by lush greenery and scenic beauty.</p>
+            <p><strong>Facilities:</strong> The college boasts state-of-the-art facilities, including modern classrooms, a well-stocked library, advanced laboratories, sports complexes, and a dedicated hostel system.</p>
+            <p><strong>Mission:</strong> To nurture young minds with holistic education, fostering academic excellence, moral values, and leadership skills.</p>
+            <p><strong>Contact:</strong> +91-123-456-7890 | Email: info@donboscocollege.edu</p>
+        </div>
+
+        <!-- Student Details Section -->
+        <h2 class="students">Student Details</h2>
+        <p class="students">Total Students: 250</p>
+
+        <h2 class="staff">Staff Details</h2>
+        <p class="staff">List of hostel staff members...</p>
+
+        <h2 class="fees">Fee Details</h2>
+        <p class="fees">Monthly Fee: ₹1800</p>
+
+        <h2 class="maintenance">Maintenance Issues</h2>
+        <p class="maintenance">Current maintenance requests...</p>
+
+        <h2 class="sports">Sports & Activities</h2>
+        <p class="sports">Upcoming sports events...</p>
+
+        <button id="exportBtn">Export Results</button>
+    </main>
+
+    <footer>
+        <p>© 2025 Hostel Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize Particle Background
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#fdbb2d" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: false },
+                move: { enable: true, speed: 2, direction: "none", random: true, straight: false }
+            },
+            interactivity: {
+                events: { onhover: { enable: true, mode: "repulse" } },
+                modes: { repulse: { distance: 100, duration: 0.4 } }
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let searchInput = document.getElementById("search");
+            let searchCategory = document.getElementById("searchCategory");
+            let menuItems = document.querySelectorAll(".sidebar a");
+            let contentSections = document.querySelectorAll("main h2, main p, .key-features, .hostel-information, .college-info");
+            let searchResults = document.getElementById("searchResults");
+            let exportBtn = document.getElementById("exportBtn");
+            let logoutBtn = document.getElementById("logoutBtn");
+
+            // Logout Functionality
+            logoutBtn.addEventListener("click", function () {
+                if (confirm("Are you sure you want to logout?")) {
+                    window.location.href = "http://localhost/Hpoint/Index/index2.php";
+                }
+            });
+
+            // Enhanced Search Functionality with Module Data
+            searchInput.addEventListener("input", async function () {
+                let query = searchInput.value.trim();
+                let category = searchCategory.value;
+                searchResults.innerHTML = "";
+                resetSearch();
+                exportBtn.style.display = "none";
+                searchResults.classList.remove("active");
+
+                if (query === "") {
+                    searchResults.style.display = "none";
+                    document.getElementById("searchMessage") && (document.getElementById("searchMessage").style.display = "none");
+                    return;
+                }
+
+                // Search static content
+                let foundStatic = false;
+                let staticMatches = [];
+                menuItems.forEach(item => {
+                    let text = item.textContent.toLowerCase();
+                    if (text.includes(query.toLowerCase())) {
+                        item.style.background = "rgba(253, 187, 45, 0.2)";
+                        foundStatic = true;
+                    } else {
+                        item.style.background = "";
+                    }
+                });
+
+                contentSections.forEach(section => {
+                    let text = section.textContent.toLowerCase();
+                    let matchesCategory = (category === "all") || section.classList.contains(category);
+                    if (text.includes(query.toLowerCase()) && matchesCategory) {
+                        section.innerHTML = section.textContent.replace(new RegExp(`(${query})`, "gi"), `<span class="highlight">$1</span>`);
+                        section.style.display = "block";
+                        staticMatches.push(section.textContent);
+                        foundStatic = true;
+                    } else {
+                        section.style.display = "none";
+                    }
+                });
+
+                // Search module data from backend
+                try {
+                    const response = await fetch('/HPoint/Admindashboard/search_modules.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: `query=${encodeURIComponent(query)}&category=${encodeURIComponent(category)}`
+                    });
+                    const data = await response.json();
+
+                    searchResults.style.display = "block";
+                    let foundModule = false;
+
+                    if (data.length > 0) {
+                        foundModule = true;
+                        data.forEach(item => {
+                            let div = document.createElement("div");
+                            div.className = "search-item";
+                            div.textContent = `${item.module}: ${item.details}`;
+                            div.onclick = () => {
+                                searchInput.value = item.details;
+                                searchResults.style.display = "none";
+                            };
+                            searchResults.appendChild(div);
+                            staticMatches.push(`${item.module}: ${item.details}`);
+                        });
+                    }
+
+                    if (foundStatic || foundModule) {
+                        searchResults.classList.add("active");
+                        exportBtn.style.display = "block";
+                        staticMatches.slice(0, 5).forEach(match => {
+                            let div = document.createElement("div");
+                            div.className = "search-item";
+                            div.textContent = match;
+                            div.onclick = () => {
+                                searchInput.value = match;
+                                searchResults.style.display = "none";
+                            };
+                            searchResults.appendChild(div);
+                        });
+                    } else {
+                        searchResults.innerHTML = "<div class='search-item'>No results found.</div>";
+                    }
+
+                    document.getElementById("searchMessage") && (document.getElementById("searchMessage").style.display = (foundStatic || foundModule) ? "none" : "block");
+                } catch (error) {
+                    console.error('Error fetching module data:', error);
+                    searchResults.innerHTML = "<div class='search-item'>Error searching modules.</div>";
+                }
+            });
+
+            function resetSearch() {
+                menuItems.forEach(item => item.style.background = "");
+                contentSections.forEach(section => {
+                    section.innerHTML = section.textContent;
+                    section.style.display = "block";
+                });
+                document.getElementById("searchMessage") && (document.getElementById("searchMessage").style.display = "none");
+            }
+
+            document.getElementById("exportBtn").addEventListener("click", function () {
+                let results = document.querySelectorAll(".search-item");
+                let textToSave = "";
+
+                results.forEach(result => {
+                    textToSave += result.textContent + "\n";
+                });
+
+                if (!textToSave) {
+                    let visibleSections = document.querySelectorAll("main h2:not([style*='display: none']), main p:not([style*='display: none']), .key-features:not([style*='display: none']), .hostel-information:not([style*='display: none']), .college-info:not([style*='display: none'])");
+                    visibleSections.forEach(section => {
+                        textToSave += section.textContent + "\n";
+                    });
+                }
+
+                let blob = new Blob([textToSave], { type: "text/plain" });
+                let a = document.createElement("a");
+                a.href = URL.createObjectURL(blob);
+                a.download = "SearchResults.txt";
+                a.click();
+            });
+        });
+    </script>
+</body>
+</html>

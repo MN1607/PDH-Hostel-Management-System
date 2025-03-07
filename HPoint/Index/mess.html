@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savia Mess - PDH Hostel</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @keyframes changeBackground {
+            0% { background: linear-gradient(45deg, #1a1a2e, #16213e); }
+            33% { background: linear-gradient(45deg, #16213e, #0f3460); }
+            66% { background: linear-gradient(45deg, #0f3460, #1a1a2e); }
+            100% { background: linear-gradient(45deg, #1a1a2e, #16213e); }
+        }
+        
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 20px; 
+            animation: changeBackground 9s infinite linear;
+            transition: background 3s ease-in-out;
+            color: white;
+        }
+        
+        header { 
+            background: #ff9800; 
+            color: white; 
+            padding: 15px; 
+            border-radius: 10px; 
+            transition: transform 0.3s ease-in-out;
+        }
+        header:hover {
+            transform: scale(1.05);
+        }
+        
+        .mess-info, .payment-section, #receiptSection, .complaint-section {
+            margin: 20px; 
+            padding: 20px; 
+            background: rgba(0, 0, 0, 0.8); 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mess-info:hover, .payment-section:hover, #receiptSection:hover, .complaint-section:hover {
+            transform: scale(1.02);
+        }
+        
+        .mess-img { 
+            width: 100%; 
+            max-width: 500px; 
+            border-radius: 10px; 
+            transition: opacity 0.5s;
+        }
+        .mess-img:hover {
+            opacity: 0.8;
+        }
+        
+        button { 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            background: #ff9800; 
+            color: black; 
+            font-size: 16px; 
+            cursor: pointer; 
+            transition: background 0.3s, transform 0.2s;
+        }
+        button:hover { 
+            background: #e68a00; 
+            transform: scale(1.1);
+        }
+        
+        .hidden { display: none; }
+        
+        input[type="text"], textarea {
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid #ff9800;
+            border-radius: 5px;
+            background: #222;
+            color: white;
+            font-size: 16px;
+        }
+        input[type="text"]:focus, textarea:focus {
+            border-color: #e68a00;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Savia Mess</h1>
+        <p>Don Bosco College (Co-Ed), Yelagiri Hills</p>
+    </header>
+    
+    <section class="mess-info">
+        <img src="savia_mess.jpg" alt="Savia Mess" class="mess-img">
+        <p>Enjoy delicious and hygienic food at Savia Mess. Monthly cost: <strong>₹1800</strong></p>
+    </section>
+    
+    <section class="payment-section">
+        <h2>Mess Payment</h2>
+        <form id="paymentForm">
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" required><br>
+            
+            <label for="studentId">Student ID:</label>
+            <input type="text" id="studentId" required>
+            
+            <p>Total Amount: <strong>₹1800</strong></p>
+            <button type="submit">Pay Now</button>
+        </form>
+    </section>
+    
+    <section id="receiptSection" class="hidden">
+        <h2>Payment Receipt</h2>
+        <p id="receiptText"></p>
+        <button id="downloadReceipt">Download Receipt</button>
+    </section>
+
+    <section class="complaint-section">
+        <h2>Report an Issue</h2>
+        <form id="complaintForm">
+            <label for="complaintName">Your Name:</label>
+            <input type="text" id="complaintName" required><br>
+            
+            <label for="complaintId">Student ID:</label>
+            <input type="text" id="complaintId" required><br>
+            
+            <label for="complaintDetails">Issue Details:</label>
+            <textarea id="complaintDetails" rows="5" required></textarea>
+            
+            <button type="submit">Submit Complaint</button>
+        </form>
+    </section>
+
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let name = document.getElementById('studentName').value;
+            let id = document.getElementById('studentId').value;
+            
+            let receiptText = `Receipt\nStudent Name: ${name}\nStudent ID: ${id}\nAmount Paid: ₹1800\nStatus: Paid`;
+            document.getElementById('receiptText').innerText = receiptText;
+            document.getElementById('receiptSection').classList.remove('hidden');
+        });
+        
+        document.getElementById('downloadReceipt').addEventListener('click', function() {
+            let receiptContent = document.getElementById('receiptText').innerText;
+            let blob = new Blob([receiptContent], { type: 'text/plain' });
+            let link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Savia_Mess_Receipt.txt';
+            link.click();
+        });
+
+        document.getElementById('complaintForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let name = document.getElementById('complaintName').value;
+            let id = document.getElementById('complaintId').value;
+            let details = document.getElementById('complaintDetails').value;
+            
+            alert(`Thank you, ${name}. Your complaint has been submitted.`);
+            // Here you can add code to send the complaint to the server or admin
+        });
+    </script>
+</body>
+</html>

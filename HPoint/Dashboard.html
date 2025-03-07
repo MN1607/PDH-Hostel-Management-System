@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDH Hostel Management System</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Inline CSS for immediate clarity fixes and new hostel section */
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px; }
+        .buttons { display: flex; align-items: center; gap: 15px; }
+        .home-label { font-weight: bold; color: #fff; cursor: default; }
+        button { padding: 10px 20px; cursor: pointer; transition: background-color 0.3s; }
+        .slideshow { position: relative; height: 400px; overflow: hidden; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; opacity: 0; transition: opacity 1s ease; }
+        .slide.active { opacity: 1; }
+        .welcome-message { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .footer-content { text-align: center; padding: 20px; }
+        .social-icons a, .app-icons a { margin: 0 10px; color: #fff; text-decoration: none; }
+        /* New styles for about-hostel section */
+        .about-hostel-content { display: flex; gap: 20px; align-items: center; }
+        .about-hostel-text { flex: 1; }
+        .about-hostel-image { flex: 0 0 300px; }
+        .about-hostel-image img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>PDH Hostel Management System</h1>
+        <div class="buttons">
+            <div class="home-label">Home</div>
+            <button class="signin-btn"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+            <button class="admin-btn"><i class="fas fa-user-shield"></i> Admin</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="slideshow">
+            <div class="slide active" style="background-image: url('hostelboom.jpg');"></div>
+            <div class="slide" style="background-image: url('hostelbed.jpg');"></div>
+            <div class="slide" style="background-image: url('dreamhostel.jpg');"></div>
+        </div>
+        <div class="welcome-message">
+            <h2>Welcome to PDH Hostel Management System!</h2>
+            <p>Your gateway to a seamless hostel experience at Don Bosco College, Yelagiri Hills.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="dashboard">
+            <h2>Hostel Management Made Easy</h2>
+            <p>Access your dormitory details, fees, and more with our intuitive system.</p>
+            
+            <div class="quick-overview">
+                <div class="box">
+                    <h3><i class="fas fa-users"></i> Total Students</h3>
+                    <p>150</p>
+                </div>
+                <div class="box">
+                    <h3><i class="fas fa-bed"></i> Available Dormitories</h3>
+                    <p>5 Dorms</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-hostel">
+            <h3>About PDH Hostel</h3>
+            <div class="about-hostel-content">
+                <div class="about-hostel-text">
+                    <p><span class="highlight">PDH Hostel</span>, nestled in the scenic <span class="highlight">Yelagiri Hills</span>, offers a peaceful and conducive environment for students of <span class="highlight">Don Bosco College</span>. Our hostel provides a safe, comfortable living space to support your academic journey amidst nature.</p>
+                    <p>As a co-educational facility, we foster a holistic experience with well-maintained dormitories, recreational areas, and 24/7 security to ensure your well-being.</p>
+                    <p>We prioritize community and growth, creating a supportive atmosphere for all residents.</p>
+                </div>
+                <div class="about-hostel-image">
+                    <img src="pdh.jpg" alt="PDH Hostel Exterior">
+                </div>
+            </div>
+        </div>
+
+        <div class="college-info">
+            <h3>About Don Bosco College</h3>
+            <div class="college-content">
+                <div class="college-text">
+                    <p>Established in 1983, <span class="highlight">Don Bosco College, Yelagiri Hills</span>, is a premier co-educational institution affiliated with <span class="highlight">Thiruvalluvar University</span>. Located in the serene hills of Tamil Nadu, the college offers a perfect blend of academic excellence and holistic development.</p>
+                    <p>We provide a wide range of undergraduate and postgraduate programs, including <span class="highlight">B.Sc., B.Com, BCA, and M.A.</span>, with state-of-the-art facilities like modern labs, a well-stocked library, and sports amenities.</p>
+                    <p>Our mission is to empower students with knowledge, skills, and values, fostering leadership and innovation in a nurturing environment.</p>
+                </div>
+                <div class="college-image">
+                    <img src="college.jpg" alt="Don Bosco College">
+                </div>
+            </div>
+        </div>
+
+        <div class="saint-bosco-info">
+            <h3>Saint John Bosco</h3>
+            <div class="saint-content">
+                <div class="saint-image">
+                    <img src="donbosco.jpg" alt="Saint John Bosco">
+                </div>
+                <div class="saint-text">
+                    <p>Saint John Bosco, popularly known as Don Bosco (Italian for Father Bosco), was born at Becchi, in Piedmont, Italy on August 16, 1815. From a very young age, he had decided that he had been called to work for the poor boys of that era when Europe was under the grip of the Industrial Revolution, and many young people who came to the cities to study or in search of work fell an easy prey to the many social evils of the time.</p>
+                    <p>After being ordained a priest of the Catholic Church in 1841,...</p>
+                    <a href="https://en.wikipedia.org/wiki/John_Bosco" target="_blank" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <h3>Key Features</h3>
+            <div class="columns">
+                <div class="column">
+                    <h4>Student Dashboard</h4>
+                    <ul>
+                        <li>Dormitory allocation details</li>
+                        <li>Fee tracking and payment status</li>
+                        <li>Submit dormitory change requests</li>
+                        <li>View hostel announcements</li>
+                        <li>Access personal data</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h4>Admin Dashboard</h4>
+                    <ul>
+                        <li>Manage dormitory assignments</li>
+                        <li>Track student fee payments</li>
+                        <li>Approve dormitory change requests</li>
+                        <li>Generate reports and analytics</li>
+                        <li>Manage hostel staff and resources</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <h4>Connect with Us</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/dbcyelagiri" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/dbcyelagiri" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/dbcyelagiri" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/school/don-bosco-college-yelagiri-hills" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="app-icons">
+                <a href="https://play.google.com/store" target="_blank"><i class="fab fa-google-play"></i> Google Play</a>
+                <a href="https://www.apple.com/app-store" target="_blank"><i class="fab fa-app-store"></i> App Store</a>
+            </div>
+            <p>© 2025 PDH Hostel Management System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Slideshow functionality
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Initial display
+        showSlide(currentSlide);
+        // Auto-slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Navigation functions
+        function navigateToSignIn() {
+            console.log('Navigating to Sign In: login.php');
+            window.location.href = 'login.php';
+        }
+
+        function navigateToAdminLogin() {
+            const adminLoginUrl = 'Admindashboard/admin_login.php';
+            console.log('Navigating to Admin Login:', adminLoginUrl);
+            window.location.href = adminLoginUrl;
+        }
+
+        // Event listeners for buttons
+        document.querySelector('.signin-btn').addEventListener('click', navigateToSignIn);
+        document.querySelector('.admin-btn').addEventListener('click', navigateToAdminLogin);
+
+        // Error handling for navigation
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                try {
+                    if (e.target.classList.contains('signin-btn')) {
+                        navigateToSignIn();
+                    } else if (e.target.classList.contains('admin-btn')) {
+                        navigateToAdminLogin();
+                    }
+                } catch (error) {
+                    console.error('Navigation error:', error);
+                    alert('An error occurred while navigating. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

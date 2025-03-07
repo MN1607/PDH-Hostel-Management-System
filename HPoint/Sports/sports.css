@@ -1,0 +1,189 @@
+/* General Styles */
+body {
+    background: #f4f7fa; /* Light, professional background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Ensures body takes full height */
+    width: 100vw; /* Full width */
+    overflow-y: auto; /* Scrollbar in browser window */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px; /* Wider container for professional layout */
+    background: #ffffff;
+    padding: 40px;
+    margin: 20px; /* Margin from top and sides */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #1e3c72;
+    font-weight: 600;
+    font-size: 28px;
+    margin: 0;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.success-message {
+    color: #28a745;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 12px;
+    background: #e6ffe6;
+    border-radius: 4px;
+    border: 1px solid #28a745;
+}
+
+/* Form Styles */
+.request-form, .response-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 16px;
+    display: block;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #1e3c72;
+    box-shadow: 0 0 5px rgba(30, 60, 114, 0.2);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #999;
+}
+
+/* Button Styles */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+button {
+    background-color: #1e3c72;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #2a5298;
+    transform: translateY(-2px);
+}
+
+.go-back-btn {
+    background-color: #6c757d;
+}
+
+.go-back-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Response Section */
+.response-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #e9ecef;
+}
+
+.response-section h3 {
+    color: #1e3c72;
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+#admin_responses {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #e9ecef;
+}
+
+#admin_responses h3 {
+    font-size: 18px;
+    margin-top: 0;
+    color: #1e3c72;
+}
+
+#admin_responses p {
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+#admin_responses hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 15px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+    }
+}

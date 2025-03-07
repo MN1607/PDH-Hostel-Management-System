@@ -1,0 +1,767 @@
+/* Reset and General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Background Animation with Linear Gradient (for the entire page) */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #1e3c72, #2a5298, #3498db, #8e44ad, #9b59b6);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideInFromTop 0.8s ease-out;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+header .logo {
+    width: 60px;
+    height: auto;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+header .logo:hover {
+    transform: scale(1.1);
+}
+
+.college-name {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #2a5298;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #2a5298;
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+    background: #2a5298;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.menu-icon {
+    font-size: 1.2em;
+}
+
+header .admin {
+    text-decoration: none;
+    color: #e74c3c;
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 10px 25px;
+    border: 2px solid #e74c3c;
+    border-radius: 25px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+header .admin:hover {
+    background: #e74c3c;
+    color: #fff;
+}
+
+/* Main Content */
+main {
+    height: calc(100vh - 80px); /* Adjust for header height */
+    overflow-y: auto;
+    padding: 0;
+}
+
+/* Student Info */
+.student-info {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(90deg, #3498db, #8e44ad);
+    padding: 30px;
+    border-radius: 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Search Bar */
+.search-bar {
+    text-align: center;
+    padding: 20px 0;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.search-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    max-width: 500px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 12px 50px 12px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+#searchInput:focus {
+    box-shadow: 0 5px 25px rgba(52, 152, 219, 0.3);
+    background: #fff;
+    outline: none;
+    transform: scale(1.02);
+}
+
+#searchInput::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color: #3498db;
+    transition: color 0.3s ease;
+}
+
+.search-wrapper:hover .search-icon {
+    color: #8e44ad;
+}
+
+/* Highlight Styling for Search */
+.highlight {
+    background-color: #ffeb3b;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Marquee Styling */
+.marquee {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-size: 1.3em;
+    font-weight: 500;
+    color: #e67e22;
+    margin-bottom: 0;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.marquee-link {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.marquee-link:hover {
+    color: #8e44ad;
+    text-decoration: underline;
+}
+
+/* Full-Screen Slideshow */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    margin: 0;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.slides {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.fade {
+    animation: fade 1.5s ease-in-out;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5em;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    z-index: 10;
+}
+
+.prev:hover, .next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+/* Full-Screen Content Sections */
+.content-container {
+    width: 100%;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 0;
+}
+
+/* Full-Screen College Info Section (No Gradient Animation) */
+.college-info {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0;
+    box-shadow: none;
+    animation: zoomIn 1s ease-out;
+}
+
+.college-info-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.college-text {
+    flex: 1;
+}
+
+.college-text h3 {
+    color: #2a5298;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.college-text p {
+    font-size: 1.3em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.read-more {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.read-more:hover {
+    background: #8e44ad;
+    transform: scale(1.05);
+}
+
+.college-image {
+    flex: 0 0 400px;
+}
+
+.college-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Full-Screen Contact Section (No Gradient Animation) */
+.contact-about {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0;
+    box-shadow: none;
+    animation: zoomIn 1s ease-out;
+}
+
+.contact-about h3 {
+    color: #2a5298;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.contact-about p {
+    font-size: 1.3em;
+    color: #555;
+    margin: 20px 0;
+}
+
+.contact-link {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #8e44ad;
+    text-decoration: underline;
+}
+
+/* Full-Screen Location Map Section (No Gradient Animation) */
+.location-map {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0;
+    box-shadow: none;
+    animation: zoomIn 1s ease-out;
+}
+
+.location-map h3 {
+    color: #2a5298;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.map-image {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.map-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.location-map p {
+    font-size: 1.2em;
+    color: #555;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Quick Contact Section (No Gradient Animation) */
+.quick-contact {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0;
+    box-shadow: none;
+    animation: zoomIn 1s ease-out;
+}
+
+.quick-contact h3 {
+    color: #2a5298;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.quick-contact h4 {
+    color: #2a5298;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-top: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-items {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.contact-item {
+    text-align: center;
+    background: rgba(255, 69, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: scale(1.05);
+    background: rgba(255, 69, 0, 0.2);
+}
+
+.contact-icon {
+    font-size: 2em;
+    color: #ff4500;
+    margin-bottom: 10px;
+}
+
+.contact-item p {
+    font-size: 1.2em;
+    color: #555;
+    margin: 0;
+}
+
+.contact-item strong {
+    font-size: 1.3em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff; /* White background for contrast */
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon .icon-text {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    border-radius: 50%;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.facebook::before {
+    background: #3b5998; /* Facebook blue */
+}
+
+.twitter::before {
+    background: #1da1f2; /* Twitter blue */
+}
+
+.instagram::before {
+    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); /* Instagram gradient */
+}
+
+.linkedin::before {
+    background: #0077b5; /* LinkedIn blue */
+}
+
+.facebook .icon-text {
+    content: 'f';
+}
+
+.twitter .icon-text {
+    content: 't';
+}
+
+.instagram .icon-text {
+    content: 'i';
+}
+
+.linkedin .icon-text {
+    content: 'in';
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #555;
+    font-size: 0.9em;
+    margin-top: 0;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 5;
+}
+
+/* Animations */
+@keyframes slideInFromTop {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+
+    .logo-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .college-name {
+        font-size: 1em;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    header .admin {
+        margin-top: 15px;
+    }
+
+    .student-info {
+        font-size: 1.8em;
+        padding: 20px;
+    }
+
+    .marquee {
+        font-size: 1.1em;
+    }
+
+    .slideshow-container {
+        height: 50vh;
+    }
+
+    .slides img {
+        height: 100%;
+    }
+
+    .search-wrapper {
+        width: 80%;
+    }
+
+    .college-info, .contact-about, .location-map, .quick-contact {
+        min-height: auto;
+        padding: 30px;
+    }
+
+    .college-info-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .college-image {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .college-text h3, .contact-about h3, .location-map h3, .quick-contact h3 {
+        font-size: 1.8em;
+    }
+
+    .college-text p, .contact-about p, .location-map p, .quick-contact p {
+        font-size: 1.1em;
+    }
+
+    .map-image {
+        max-width: 100%;
+    }
+
+    .contact-items {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .contact-item {
+        width: 100%;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo {
+        width: 50px;
+    }
+
+    .college-name {
+        font-size: 0.9em;
+    }
+
+    nav a {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+
+    .menu-icon {
+        font-size: 1em;
+    }
+
+    header .admin {
+        font-size: 0.9em;
+        padding: 8px 20px;
+    }
+
+    .student-info {
+        font-size: 1.5em;
+    }
+
+    .marquee {
+        font-size: 0.9em;
+    }
+
+    .slideshow-container {
+        height: 40vh;
+    }
+
+    .slides img {
+        height: 100%;
+    }
+
+    .search-wrapper {
+        width: 90%;
+    }
+}
